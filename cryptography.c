@@ -138,25 +138,25 @@ int main(int argc, char **argv)
         printf("\nMissing arg.");
     }
     else if(argc == 2){
-        if(strcmp("md5", argv[2]) == 0){
+        if(strcmp("md5", argv[1]) == 0){
             md5func();
         }
-        else if(strcmp("sha256", argv[2]) == 0){
+        else if(strcmp("sha256", argv[1]) == 0){
             sha256func();
         }
-        else if(strcmp("sha1", argv[2]) == 0){
+        else if(strcmp("sha1", argv[1]) == 0){
             sha1func();
         }
-        else if(strcmp("md4", argv[2]) == 0){
+        else if(strcmp("md4", argv[1]) == 0){
             md4func();
         }
-        else if(strcmp("sha512", argv[2]) == 0){
+        else if(strcmp("sha512", argv[1]) == 0){
             sha512func();
         }
-        else if(strcmp("sha224", argv[2]) == 0){
+        else if(strcmp("sha224", argv[1]) == 0){
             sha224func();
         }
-        else if(strcmp("sha384", argv[2]) == 0){
+        else if(strcmp("sha384", argv[1]) == 0){
             sha384func();
         }
         else{
