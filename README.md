@@ -1,6 +1,7 @@
 # Cryptoc
 
 Usage : ./script <hash>
+
 Help : ./script -h
   
 Exemple : ./a.out sha256
