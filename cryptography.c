@@ -21,8 +21,8 @@ void md5_hash_from_string (char *string, char *hash)
     }
 }
 
-void md5func(){
-    char string[255] = "Hello World";
+void md5func(char *string){
+    //char string[255] = "Hello World";
     char md5_hash[2*MD5_DIGEST_LENGTH+1] = "";
     md5_hash_from_string(string, md5_hash);
     printf("%s\n", md5_hash);
@@ -33,8 +33,8 @@ void md5func(){
 
 
 /*==================================================================================*/
-void md4func(){
-    const char *text = "Hello";
+void md4func(char *text){
+    //const char *text = "Hello";
 
     unsigned char bytes[DIGEST_LENGTH];
 
@@ -58,10 +58,10 @@ void md4func(){
 
 
 /*==================================================================================*/
-void sha512func(void){
-    const char s[131] = "password";
+void sha512func(char *s){
+    //const char s[131] = "password";
 	unsigned char *d = SHA512(s, strlen(s), 0);
- 
+
 	int i;
 	for (i = 0; i < SHA512_DIGEST_LENGTH; i++)
 		printf("%02x", d[i]);
@@ -73,10 +73,10 @@ void sha512func(void){
 
 
 /*==================================================================================*/
-void sha384func(void){
-    const char s[131] = "password";
+void sha384func(char *s){
+    //const char s[131] = "password";
 	unsigned char *d = SHA384(s, strlen(s), 0);
- 
+
 	int i;
 	for (i = 0; i < SHA384_DIGEST_LENGTH; i++)
 		printf("%02x", d[i]);
@@ -88,10 +88,10 @@ void sha384func(void){
 
 
 /*==================================================================================*/
-void sha256func(void){
-    const char s[131] = "password";
+void sha256func(char *s){
+    //const char s[131] = "password";
 	unsigned char *d = SHA256(s, strlen(s), 0);
- 
+
 	int i;
 	for (i = 0; i < SHA256_DIGEST_LENGTH; i++)
 		printf("%02x", d[i]);
@@ -103,10 +103,10 @@ void sha256func(void){
 
 
 /*==================================================================================*/
-void sha224func(void){
-    const char s[131] = "password";
+void sha224func(char *s){
+    //const char s[131] = "password";
 	unsigned char *d = SHA224(s, strlen(s), 0);
- 
+
 	int i;
 	for (i = 0; i < SHA224_DIGEST_LENGTH; i++)
 		printf("%02x", d[i]);
@@ -118,10 +118,10 @@ void sha224func(void){
 
 
 /*==================================================================================*/
-void sha1func(void){
-    const char s[131] = "password";
+void sha1func(char *s){
+    //const char s[131] = "password";
 	unsigned char *d = SHA1(s, strlen(s), 0);
- 
+
 	int i;
 	for (i = 0; i < SHA_DIGEST_LENGTH; i++)
 		printf("%02x", d[i]);
@@ -134,41 +134,43 @@ void sha1func(void){
 
 int main(int argc, char **argv)
 {
-    if(argc < 2){
-        printf("\nMissing arg.");
+    if(argc < 3){
+      if(strcmp("-h", argv[1]) == 0){
+          printf("\n"
+          "\nHash algo:"
+          "\n   md4"
+          "\n   md5"
+          "\n   sha1"
+          "\n   sha224"
+          "\n   sha256"
+          "\n   sha384"
+          "\n   sha512\n\n");
+      }
+      else{
+          printf("\nMissing arg.\n\n");
+      }
     }
-    else if(argc == 2){
+    else if(argc == 3){
         if(strcmp("md5", argv[1]) == 0){
-            md5func();
+            md5func(argv[2]);
         }
         else if(strcmp("sha256", argv[1]) == 0){
-            sha256func();
+            sha256func(argv[2]);
         }
         else if(strcmp("sha1", argv[1]) == 0){
-            sha1func();
+            sha1func(argv[2]);
         }
         else if(strcmp("md4", argv[1]) == 0){
-            md4func();
+            md4func(argv[2]);
         }
         else if(strcmp("sha512", argv[1]) == 0){
-            sha512func();
+            sha512func(argv[2]);
         }
         else if(strcmp("sha224", argv[1]) == 0){
-            sha224func();
+            sha224func(argv[2]);
         }
         else if(strcmp("sha384", argv[1]) == 0){
-            sha384func();
-        }
-        else if(strcmp("-h", argv[1]) == 0){
-            printf("\n"
-            "Hash algo:"
-            "   md4"
-            "   md5"
-            "   sha1"
-            "   sha224"
-            "   sha256"
-            "   sha384"
-            "   sha512");
+            sha384func(argv[2]);
         }
         else{
             printf("Invalid arg");
